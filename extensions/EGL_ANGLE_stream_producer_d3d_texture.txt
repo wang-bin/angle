@@ -131,7 +131,7 @@ Add a section preceding "3.9.3 Posting Semantics" in the EGL specification:
     insertion is successful and will release the texture object when a new frame
     is inserted or when the stream is destroyed.
 
-    On failure, eglStreamInsertD3DTexture returns EGL_FALSE and generates an
+    On failure, eglStreamPostD3DTextureANGLE returns EGL_FALSE and generates an
     error.
 
         - EGL_BAD_STATE is generated if <stream> is not in the state
@@ -146,6 +146,8 @@ Add a section preceding "3.9.3 Posting Semantics" in the EGL specification:
           implementation, or if the specified value for
           EGL_D3D_TEXTURE_SUBRESOURCE_ID_ANGLE is not a valid subresource id for
           the texture.
+
+        - EGL_BAD_PARAMETER is generated if <texture> is not created with D3D11_BIND_SHADER_RESOURCE.
 
         - EGL_BAD_STREAM_KHR is generated if <stream> is not a valid EGLStream.
 
