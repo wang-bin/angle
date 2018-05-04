@@ -33,6 +33,9 @@ egl::Error GetGLDescFromTex(ID3D11Texture2D *const tex,
     if (desc.Width < 1 || desc.Height < 1)
         return egl::EglBadParameter() << "Width or height < 1";
 
+    if (!(desc.BindFlags & D3D11_BIND_SHADER_RESOURCE))
+        return egl::EglBadParameter() << "Texture is not created with D3D11_BIND_SHADER_RESOURCE flag";
+
     out->width     = desc.Width;
     out->height    = desc.Height;
     out->mipLevels = 0;
