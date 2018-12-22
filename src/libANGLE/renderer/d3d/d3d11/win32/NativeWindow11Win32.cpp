@@ -5,7 +5,11 @@
 //
 
 // NativeWindow11Win32.cpp: Implementation of NativeWindow11 using win32 window APIs.
-
+# pragma push_macro("_WIN32_WINNT")
+# if _WIN32_WINNT < 0x0602
+#   undef _WIN32_WINNT
+#   define _WIN32_WINNT 0x0602
+# endif
 #include "libANGLE/renderer/d3d/d3d11/win32/NativeWindow11Win32.h"
 #include "libANGLE/renderer/d3d/d3d11/renderer11_utils.h"
 
@@ -15,6 +19,7 @@
 #include <initguid.h>
 
 #include <dcomp.h>
+# pragma pop_macro("_WIN32_WINNT")
 
 namespace rx
 {

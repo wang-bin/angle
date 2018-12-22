@@ -9,15 +9,21 @@
 
 #ifndef LIBANGLE_RENDERER_D3D_D3D11_CONVERGED_COMPOSITORNATIVEWINDOW11_H_
 #define LIBANGLE_RENDERER_D3D_D3D11_CONVERGED_COMPOSITORNATIVEWINDOW11_H_
-
+# pragma push_macro("_WIN32_WINNT")
+# if _WIN32_WINNT < 0x0602 // POINTER_INFO
+#   undef _WIN32_WINNT
+#   define _WIN32_WINNT 0x0602
+# endif
 #include "libANGLE/renderer/d3d/d3d11/NativeWindow11.h"
 
 #include <dispatcherqueue.h>
 #include <versionhelpers.h>
+#include <WinUser.h>
 #include <windows.foundation.metadata.h>
 #include <windows.ui.composition.h>
 #include <windows.ui.composition.interop.h>
 #include <wrl.h>
+# pragma pop_macro("_WIN32_WINNT")
 
 namespace rx
 {

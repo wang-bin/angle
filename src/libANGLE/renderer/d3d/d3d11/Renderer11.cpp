@@ -6,6 +6,11 @@
 
 // Renderer11.cpp: Implements a back-end specific class for the D3D11 renderer.
 
+# pragma push_macro("_WIN32_WINNT")
+# if _WIN32_WINNT < 0x0602 // POINTER_INFO
+#   undef _WIN32_WINNT
+#   define _WIN32_WINNT 0x0602
+# endif
 #include "libANGLE/renderer/d3d/d3d11/Renderer11.h"
 
 #include <EGL/eglext.h>
@@ -68,6 +73,8 @@
 #    include "libANGLE/renderer/d3d/d3d11/converged/CompositorNativeWindow11.h"
 #    include "libANGLE/renderer/d3d/d3d11/win32/NativeWindow11Win32.h"
 #endif
+
+# pragma pop_macro("_WIN32_WINNT")
 
 // Enable ANGLE_SKIP_DXGI_1_2_CHECK if there is not a possibility of using cross-process
 // HWNDs or the Windows 7 Platform Update (KB2670838) is expected to be installed.
