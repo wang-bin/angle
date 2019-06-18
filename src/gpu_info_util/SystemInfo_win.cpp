@@ -13,6 +13,9 @@
 
 // Windows.h needs to be included first
 #include <windows.h>
+#ifdef __clang__
+#define far // fix CoGetMalloc build error
+#endif
 
 #include <dxgi.h>
 
